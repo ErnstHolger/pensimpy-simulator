@@ -2,6 +2,8 @@
 
 A Python translation of **IndPenSim V2** — an industrial penicillin fermentation batch simulator. Simulates ODE-based bioreactor dynamics and prints results row by row.
 
+> Source: [github.com/ErnstHolger/pensimpy-simulator](https://github.com/ErnstHolger/pensimpy-simulator)
+
 ## Overview
 
 IndPenSim models a fed-batch penicillin fermentation process. It generates realistic batch data including substrate feeds, dissolved oxygen, pH, temperature, Raman spectra, and penicillin yield — supporting both normal and fault conditions.
@@ -95,9 +97,26 @@ Batch length:     265.0 h
 ...
 Row-by-row data:
 
-  t=   0.00h  substrate_conc=15g/L  penicillin_conc=0g/L  biomass_conc=0.1g/L  ...
+  t=   0.00h  substrate_conc=15g/L  penicillin_conc=0g/L  biomass_conc=0.1g/L  ...  raman_spectrum=[...]
   t=   0.50h  ...
 ```
+
+Each row also appends `raman_spectrum=[...]` — the 2200-element intensity
+vector for that timestep when `Raman_spec` is enabled.
+
+## Data dependency
+
+The Raman simulator loads reference spectra from a sibling repository:
+
+```
+c:/repos/
+├── pensimpy-simulator/             # this repo
+└── pensimpy-simulation/
+    └── IndPenSim_V2.01/
+        └── reference_Specra.txt    # required by simulator/raman_sim.py
+```
+
+If the sibling repo is missing, runs with `Raman_spec=0` to skip Raman simulation.
 
 ### Generate multiple batches programmatically
 
