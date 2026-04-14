@@ -10,8 +10,14 @@ Python translation of IndPenSim V2 (MATLAB). ODE-based fed-batch penicillin ferm
 pensimpy-simulator/
 ├── simulator/        # Python package — all simulation logic
 ├── run.py            # Run one batch, print row-by-row to stdout
-└── requirements.txt  # numpy, scipy only
+├── requirements.txt  # numpy, scipy only
+├── README.md
+├── CLAUDE.md
+├── .gitignore
+└── .claudeignore
 ```
+
+GitHub: https://github.com/ErnstHolger/pensimpy-simulator (default branch: `main`)
 
 ## Key facts
 
@@ -19,6 +25,7 @@ pensimpy-simulator/
 - **Entry point**: `python run.py` from repo root
 - **ODE state**: 33 variables, integrated with `scipy.solve_ivp` (Radau)
 - **Parameters**: 105-element numpy array, some sampled stochastically per batch
+- **Raman output**: each row includes `raman_spectrum=[...]` (2200-element intensity vector when `Raman_spec` flag ≥ 1)
 - **Raman data**: reference spectra loaded from `../pensimpy-simulation/IndPenSim_V2.01/reference_Specra.txt` (sibling repo)
 - **No external services**: no QuestDB, NATS, or Qdrant — output is stdout only
 
